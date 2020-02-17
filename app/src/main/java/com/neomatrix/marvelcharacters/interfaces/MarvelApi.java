@@ -24,7 +24,7 @@ public interface MarvelApi {
     Call<CharactersApi> getMoreCharacters(@Url String url);
 
     @GET
-    Call<RespostaApi> getComics(@Url String url);
+    Call<CharactersApi> getComics(@Url String url);
 
 
 
