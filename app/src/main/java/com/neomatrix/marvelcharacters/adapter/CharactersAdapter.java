@@ -14,16 +14,17 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.neomatrix.marvelcharacters.DetailsActivity;
 import com.neomatrix.marvelcharacters.R;
 import com.neomatrix.marvelcharacters.models.Data;
-import com.neomatrix.marvelcharacters.models.RespostaApi;
+import com.neomatrix.marvelcharacters.models.Result;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
 public class CharactersAdapter extends RecyclerView.Adapter<CharactersAdapter.ViewHolder> {
-    private List<Data> listaPersonagens;
+    private List<Result> listaPersonagens;
     private Context context;
-    private RespostaApi item;
+    private Result item;
 
-    public CharactersAdapter( List<Data> listaPersonagens,Context context) {
+    public CharactersAdapter( List<Result> listaPersonagens,Context context) {
         this.listaPersonagens = listaPersonagens;
         this.context = context;
 
@@ -40,13 +41,13 @@ public class CharactersAdapter extends RecyclerView.Adapter<CharactersAdapter.Vi
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
- //   item = listaPersonagens.get(position);
- //   holder.textView1.setText(item.getData().getResults());
- //   //holder.textView2.setText(item.getDescription());
- //   Picasso.get()
- //           .load(item.getThumbnail().getPath() + "." + item.getThumbnail().getExtension())
- //           //.resize(170, 170)
- //           .into(holder.imageView);
+   item = listaPersonagens.get(position);
+   holder.textView1.setText(item.getName());
+   //holder.textView2.setText(item.getDescription());
+   Picasso.get()
+           .load(item.getThumbnail().getPath() + "." + item.getThumbnail().getExtension())
+           //.resize(170, 170)
+           .into(holder.imageView);
 
     }
 
@@ -73,11 +74,11 @@ public class CharactersAdapter extends RecyclerView.Adapter<CharactersAdapter.Vi
 
 
 
-       //           intent.putExtra("nome",listaPersonagens.get(getAdapterPosition()).getName());
-       //           intent.putExtra("id",listaPersonagens.get(getAdapterPosition()).getId());
-       //           intent.putExtra("desc",listaPersonagens.get(getAdapterPosition()).getDescription());
-       //           intent.putExtra("thumb",listaPersonagens.get(getAdapterPosition()).getThumbnail().getPath());
-       //           intent.putExtra("ext",listaPersonagens.get(getAdapterPosition()).getThumbnail().getExtension());
+                intent.putExtra("nome",listaPersonagens.get(getAdapterPosition()).getName());
+                intent.putExtra("id",listaPersonagens.get(getAdapterPosition()).getId());
+                intent.putExtra("desc",listaPersonagens.get(getAdapterPosition()).getDescription());
+                intent.putExtra("thumb",listaPersonagens.get(getAdapterPosition()).getThumbnail().getPath());
+                intent.putExtra("ext",listaPersonagens.get(getAdapterPosition()).getThumbnail().getExtension());
 
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     v.getContext().startActivity(intent);

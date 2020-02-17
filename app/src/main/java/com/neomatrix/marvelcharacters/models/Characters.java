@@ -5,51 +5,132 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
+import java.util.List;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 public class Characters {
 
-@SerializedName("available")
-@Expose
-private Integer available;
-@SerializedName("collectionURI")
-@Expose
-private String collectionURI;
-@SerializedName("items")
-@Expose
-private List<Item_> items = null;
-@SerializedName("returned")
-@Expose
-private Integer returned;
+    @SerializedName("id")
+    @Expose
+    private String id;
+    @SerializedName("name")
+    @Expose
+    private String name;
+    @SerializedName("description")
+    @Expose
+    private String description;
+    @SerializedName("modified")
+    @Expose
+    private String modified;
+    @SerializedName("resourceURI")
+    @Expose
+    private String resourceURI;
+    @SerializedName("urls")
+    @Expose
+    private List<Url> urls = null;
+    @SerializedName("thumbnail")
+    @Expose
+    private Thumbnail thumbnail;
+    @SerializedName("comics")
+    @Expose
+    private Comics comics;
+    @SerializedName("stories")
+    @Expose
+    private Stories stories;
+    @SerializedName("events")
+    @Expose
+    private Events events;
+    @SerializedName("series")
+    @Expose
+    private Series series;
 
-public Integer getAvailable() {
-return available;
-}
+    public String getId() {
+        return id;
+    }
 
-public void setAvailable(Integer available) {
-this.available = available;
-}
+    public void setId(String id) {
+        this.id = id;
+    }
 
-public String getCollectionURI() {
-return collectionURI;
-}
+    public String getName() {
+        return name;
+    }
 
-public void setCollectionURI(String collectionURI) {
-this.collectionURI = collectionURI;
-}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-public List<Item_> getItems() {
-return items;
-}
+    public String getDescription() {
+        return description;
+    }
 
-public void setItems(List<Item_> items) {
-this.items = items;
-}
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
-public Integer getReturned() {
-return returned;
-}
+    public String getModified() {
+        return modified;
+    }
 
-public void setReturned(Integer returned) {
-this.returned = returned;
-}
+    public void setModified(String modified) {
+        this.modified = modified;
+    }
+
+    public String getResourceURI() {
+        return resourceURI;
+    }
+
+    public void setResourceURI(String resourceURI) {
+        this.resourceURI = resourceURI;
+    }
+
+    public List<Url> getUrls() {
+        return urls;
+    }
+
+    public void setUrls(List<Url> urls) {
+        this.urls = urls;
+    }
+
+    public Thumbnail getThumbnail() {
+        return thumbnail;
+    }
+
+    public void setThumbnail(Thumbnail thumbnail) {
+        this.thumbnail = thumbnail;
+    }
+
+    public Comics getComics() {
+        return comics;
+    }
+
+    public void setComics(Comics comics) {
+        this.comics = comics;
+    }
+
+    public Stories getStories() {
+        return stories;
+    }
+
+    public void setStories(Stories stories) {
+        this.stories = stories;
+    }
+
+    public Events getEvents() {
+        return events;
+    }
+
+    public void setEvents(Events events) {
+        this.events = events;
+    }
+
+    public Series getSeries() {
+        return series;
+    }
+
+    public void setSeries(Series series) {
+        this.series = series;
+    }
 
 }

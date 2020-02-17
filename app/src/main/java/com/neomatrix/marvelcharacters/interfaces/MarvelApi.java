@@ -1,6 +1,9 @@
 package com.neomatrix.marvelcharacters.interfaces;
 
+import com.neomatrix.marvelcharacters.models.CharactersApi;
+import com.neomatrix.marvelcharacters.models.Data;
 import com.neomatrix.marvelcharacters.models.RespostaApi;
+import com.neomatrix.marvelcharacters.models.Result;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
@@ -15,13 +18,13 @@ public interface MarvelApi {
 
 
     @GET("characters?limit=20&offset=0&ts=1581772705783&apikey=9df87fa1d8b665f808852975ceb42844&hash=b3b889dc48b0069c81668384b28c2e31")
-    Call<RespostaApi> getCharacters();
+    Call<CharactersApi> getCharacters();
 
     @GET
-    Call<RespostaApi> getMoreCharacters(@Url String url);
+    Call<CharactersApi> getMoreCharacters(@Url String url);
 
     @GET
-    Call<Character> getComics(@Url String url);
+    Call<RespostaApi> getComics(@Url String url);
 
 
 

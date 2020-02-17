@@ -11,6 +11,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.neomatrix.marvelcharacters.adapter.CharactersAdapter;
 import com.neomatrix.marvelcharacters.interfaces.MarvelApi;
+import com.neomatrix.marvelcharacters.models.Characters;
+import com.neomatrix.marvelcharacters.models.CharactersApi;
+import com.neomatrix.marvelcharacters.models.Data;
 import com.neomatrix.marvelcharacters.models.RespostaApi;
 import com.neomatrix.marvelcharacters.models.Result;
 
@@ -31,6 +34,9 @@ public class MainActivity extends AppCompatActivity {
     private GridLayoutManager gridLayout;
     private ProgressBar progressBar;
     private List<Result> personagens;
+    private CharactersApi retornoApi;
+
+
 
     private int offset=0;
 
@@ -54,11 +60,11 @@ public class MainActivity extends AppCompatActivity {
 
         MarvelApi api = retrofit.create(MarvelApi.class);
 
-        Call<RespostaApi> requestApi = api.getCharacters();
+        Call<CharactersApi> requestApi = api.getCharacters();
 
-        requestApi.enqueue(new Callback<RespostaApi>() {
+        requestApi.enqueue(new Callback<CharactersApi>() {
             @Override
-            public void onResponse(Call<RespostaApi> call, Response<RespostaApi> response) {
+            public void onResponse(Call<CharactersApi> call, Response<CharactersApi> response) {
                 if (response.isSuccessful()) {
 
                     personagens = response.body().getData().getResults();
@@ -75,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<RespostaApi> call, Throwable t) {
+            public void onFailure(Call<CharactersApi> call, Throwable t) {
 
             }
         });
@@ -96,11 +102,11 @@ public class MainActivity extends AppCompatActivity {
 
                     String tudo = "characters?limit=20&offset="+offset2+"&ts=1581772705783&apikey=9df87fa1d8b665f808852975ceb42844&hash=b3b889dc48b0069c81668384b28c2e31";
 
-                    Call<RespostaApi> requestApi = api.getMoreCharacters(tudo);
+                    Call<CharactersApi> requestApi = api.getMoreCharacters(tudo);
 
-                    requestApi.enqueue(new Callback<RespostaApi>() {
+                    requestApi.enqueue(new Callback<CharactersApi>() {
                         @Override
-                        public void onResponse(Call<RespostaApi> call, Response<RespostaApi> response) {
+                        public void onResponse(Call<CharactersApi> call, Response<CharactersApi> response) {
                             if (response.isSuccessful()) {
 
 
@@ -117,7 +123,7 @@ public class MainActivity extends AppCompatActivity {
                         }
 
                         @Override
-                        public void onFailure(Call<RespostaApi> call, Throwable t) {
+                        public void onFailure(Call<CharactersApi> call, Throwable t) {
                             Toast.makeText(MainActivity.this, "Ocorreu um erro"+ t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
 
                         }
