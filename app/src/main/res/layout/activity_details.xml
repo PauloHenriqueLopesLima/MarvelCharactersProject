@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DetailsActivity">
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="340dp"
+            android:layout_height="340dp"
+
+            app:cardElevation="8dp"
+            >
+
+            <ImageView
+                android:id="@+id/imageViewDetailsPhotoCharacter"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="top"
+                android:cropToPadding="true"
+
+                />
+
+
+        </androidx.cardview.widget.CardView>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:orientation="vertical">
+
+
+            <TextView
+                android:id="@+id/textViewDetailsNameCharacter"
+                android:layout_width="340dp"
+                android:layout_height="50dp"
+                android:background="@color/yellow"
+                android:fontFamily="@font/bangers"
+                android:gravity="center"
+                android:text="Personagem"
+                android:textAllCaps="false"
+                android:textColor="@color/Preto"
+                android:textSize="32sp" />
+
+            <TextView
+                android:id="@+id/textViewDetailsDescriptionCharacter"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/azulFace"
+                android:fontFamily="@font/bangers"
+                android:gravity="center"
+                android:maxLines="3"
+                android:textAllCaps="false"
+                android:textColor="@color/branco"
+                android:textSize="23sp" />
+            <Button
+                android:id="@+id/buttonHq"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_margin="16dp"
+                android:text="Most value HQ"
+                android:fontFamily="@font/bangers"
+                android:textColor="@android:color/black"
+                android:background="@drawable/button_style">
+
+            </Button>
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

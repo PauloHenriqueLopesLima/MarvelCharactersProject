@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#FFFFFF</color>
+
+    <color name="branco">#FFFFFF</color>
+    <color name="roxo">#480458</color>
+    <color name="azulFace">#2175F3</color>
+    <color name="azulBackground">#100B5A</color>
+    <color name="Preto">#FF000000</color>
+    <color name="cinza">#979797</color>
+    <color name="lilac">#463FA2</color>
+    <color name="yellow">#FFC107</color>
+
+
+</resources>
