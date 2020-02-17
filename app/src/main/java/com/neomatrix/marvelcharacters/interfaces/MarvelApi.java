@@ -1,6 +1,7 @@
 package com.neomatrix.marvelcharacters.interfaces;
 
 import com.neomatrix.marvelcharacters.models.CharactersApi;
+import com.neomatrix.marvelcharacters.models.ComicsApi;
 import com.neomatrix.marvelcharacters.models.Data;
 import com.neomatrix.marvelcharacters.models.RespostaApi;
 import com.neomatrix.marvelcharacters.models.Result;
@@ -24,7 +25,7 @@ public interface MarvelApi {
     Call<CharactersApi> getMoreCharacters(@Url String url);
 
     @GET
-    Call<CharactersApi> getComics(@Url String url);
+    Call<ComicsApi> getComics(@Url String url);
 
 
 

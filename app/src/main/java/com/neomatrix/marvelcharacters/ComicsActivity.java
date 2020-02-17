@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.neomatrix.marvelcharacters.interfaces.MarvelApi;
 import com.neomatrix.marvelcharacters.models.CharactersApi;
+import com.neomatrix.marvelcharacters.models.ComicsApi;
 import com.neomatrix.marvelcharacters.models.RespostaApi;
 import com.neomatrix.marvelcharacters.models.Result;
 
@@ -50,11 +51,11 @@ public class ComicsActivity extends AppCompatActivity {
 
 
 
-        Call<CharactersApi> requestApi = api.getComics(tudo);
+        Call<ComicsApi> requestApi = api.getComics(tudo);
 
-        requestApi.enqueue(new Callback<CharactersApi>() {
+        requestApi.enqueue(new Callback<ComicsApi>() {
             @Override
-            public void onResponse(Call<CharactersApi> call, Response<CharactersApi> response) {
+            public void onResponse(Call<ComicsApi> call, Response<ComicsApi> response) {
                 if (response.isSuccessful()) {
 
                     List<Result> personagens = response.body().getData().getResults();
@@ -67,7 +68,7 @@ public class ComicsActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<CharactersApi> call, Throwable t) {
+            public void onFailure(Call<ComicsApi> call, Throwable t) {
 
             }
         });
