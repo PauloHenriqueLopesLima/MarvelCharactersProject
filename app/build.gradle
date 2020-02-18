@@ -43,5 +43,11 @@ dependencies {
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation "com.andkulikov:transitionseverywhere:2.0.0"
 
+    // room dependencies
+
+    implementation 'androidx.room:room-runtime:2.2.3'
+    annotationProcessor 'androidx.room:room-compiler:2.2.3'
+    implementation 'androidx.room:room-rxjava2:2.2.3'
+
 
 }

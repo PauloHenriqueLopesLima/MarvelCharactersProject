@@ -109,11 +109,8 @@ public class MainActivity extends AppCompatActivity {
                         public void onResponse(Call<CharactersApi> call, Response<CharactersApi> response) {
                             if (response.isSuccessful()) {
 
-
-
                                 personagens.addAll(response.body().getData().getResults()) ;
                                 adapter.notifyDataSetChanged();
-
 
                             } else {
 

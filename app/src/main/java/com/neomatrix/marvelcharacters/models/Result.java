@@ -2,14 +2,20 @@ package com.neomatrix.marvelcharacters.models;
 
 
 
+    import androidx.room.ColumnInfo;
+    import androidx.room.Entity;
+    import androidx.room.PrimaryKey;
+
     import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import java.util.List;
+    import java.util.Comparator;
+    import java.util.List;
 
-
+//@Entity(tableName = "result")
 public class Result  {
 
+    //@PrimaryKey(autoGenerate = true)
     @SerializedName("id")
     @Expose
     private String id;
@@ -76,9 +82,11 @@ public class Result  {
     @SerializedName("dates")
     @Expose
     private List<Date> dates = null;
+   // @ColumnInfo(name = "prices")
     @SerializedName("prices")
     @Expose
     private List<Price> prices = null;
+
     @SerializedName("thumbnail")
     @Expose
     private Thumbnail thumbnail;
@@ -362,5 +370,10 @@ public class Result  {
         this.series = series;
     }
 
-
+    public static Comparator<Result> peloPreco = new Comparator<Result>() {
+        @Override
+        public int compare(Result one, Result two) {
+            return one.getPrices().get(0).getPrice().compareTo(two.getPrices().get(0).getPrice());
+        }
+    };
 }

@@ -11,6 +11,8 @@ import com.neomatrix.marvelcharacters.models.ComicsApi;
 import com.neomatrix.marvelcharacters.models.Result;
 import com.squareup.picasso.Picasso;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import retrofit2.Call;
@@ -64,6 +66,10 @@ public class ComicsActivity extends AppCompatActivity {
                     List<Result> comics = response.body().getData().getResults();
 
 
+                    Comparator<Result> value = (Result o1, Result o2) ->
+                            o2.getPrices().get(0).getPrice().compareTo( o1.getPrices().get(0).getPrice() );
+
+                    Collections.sort(comics,value);
                     
 
                     textViewIdCharacterComics.setText(comics.get(0).getTitle());
