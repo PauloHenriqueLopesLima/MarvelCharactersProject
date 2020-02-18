@@ -64,6 +64,8 @@ public class ComicsActivity extends AppCompatActivity {
                     List<Result> comics = response.body().getData().getResults();
 
 
+                    
+
                     textViewIdCharacterComics.setText(comics.get(0).getTitle());
 
                     textViewDescription.setText(comics.get(0).getDescription());

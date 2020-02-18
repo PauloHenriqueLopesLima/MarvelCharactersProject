@@ -8,7 +8,7 @@ import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
 
-public class Result {
+public class Result  {
 
     @SerializedName("id")
     @Expose
@@ -361,5 +361,6 @@ public class Result {
     public void setSeries(Series series) {
         this.series = series;
     }
+
 
 }
