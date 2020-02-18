@@ -7,10 +7,9 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.neomatrix.marvelcharacters.interfaces.MarvelApi;
-import com.neomatrix.marvelcharacters.models.CharactersApi;
 import com.neomatrix.marvelcharacters.models.ComicsApi;
-import com.neomatrix.marvelcharacters.models.RespostaApi;
 import com.neomatrix.marvelcharacters.models.Result;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -24,6 +23,8 @@ public class ComicsActivity extends AppCompatActivity {
 
     private ImageView imageViewCharacterComics;
     private TextView textViewIdCharacterComics;
+    private TextView textViewDescription;
+    private TextView textViewPrice;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,11 +33,13 @@ public class ComicsActivity extends AppCompatActivity {
 
         imageViewCharacterComics = findViewById(R.id.imageViewCharacterComics);
         textViewIdCharacterComics = findViewById(R.id.textViewIdCharacterComics);
+        textViewDescription = findViewById(R.id.textViewDescription);
+        textViewPrice = findViewById(R.id.textViewPrice);
 
-        int id= getIntent().getExtras().getInt("id");
+        String id= getIntent().getExtras().getString("id");
         textViewIdCharacterComics.setText("id do Personagem: "+id);
 
-        System.out.println(textViewIdCharacterComics.getText());
+
 
 
         Retrofit retrofit = new Retrofit.Builder()
@@ -58,9 +61,24 @@ public class ComicsActivity extends AppCompatActivity {
             public void onResponse(Call<ComicsApi> call, Response<ComicsApi> response) {
                 if (response.isSuccessful()) {
 
-                    List<Result> personagens = response.body().getData().getResults();
+                    List<Result> comics = response.body().getData().getResults();
 
 
+                    textViewIdCharacterComics.setText(comics.get(0).getTitle());
+
+                    textViewDescription.setText(comics.get(0).getDescription());
+
+                    textViewPrice.setText("Preco USD: "+comics.get(0).getPrices().get(0).getPrice());
+
+
+
+                    Picasso.get()
+
+
+                            .load(comics.get(0).getImages().get(0).getPath()+"."+comics.get(0).getImages().get(0).getExtension())
+
+                            //.resize(170, 170)
+                            .into(imageViewCharacterComics);
 
                 } else {
 

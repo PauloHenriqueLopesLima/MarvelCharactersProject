@@ -69,11 +69,11 @@
                 android:textSize="23sp" />
             <Button
                 android:id="@+id/buttonHq"
-                android:layout_width="100dp"
+                android:layout_width="200dp"
                 android:layout_height="50dp"
                 android:layout_gravity="center"
                 android:layout_margin="16dp"
-                android:text="Most value HQ"
+                android:text="most expensive comic"
                 android:fontFamily="@font/bangers"
                 android:textColor="@android:color/black"
                 android:background="@drawable/button_style">

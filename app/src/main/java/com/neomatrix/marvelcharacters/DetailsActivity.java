@@ -28,7 +28,7 @@ public class DetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
 
-        overridePendingTransition(R.anim.anim_two, R.anim.anim_one);
+        //overridePendingTransition(R.anim.anim_one, R.anim.anim_one);
 
         btnHq = findViewById(R.id.buttonHq);
 
@@ -64,7 +64,7 @@ public class DetailsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(),ComicsActivity.class);
-                int id = getIntent().getIntExtra("id",0);
+                String id = getIntent().getStringExtra("id");
                 intent.putExtra("id",id);
                 startActivity(intent);
 

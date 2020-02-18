@@ -12,23 +12,43 @@
 
     <ImageView
         android:id="@+id/imageViewCharacterComics"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
-        app:layout_constraintBottom_toTopOf="@+id/textViewIdCharacterComics"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@tools:sample/backgrounds/scenic" />
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+         />
 
     <TextView
         android:id="@+id/textViewIdCharacterComics"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
         android:layout_gravity="center"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageViewCharacterComics" />
+        android:background="@color/azulFace"
+        android:fontFamily="@font/bangers"
+        android:gravity="center"
+        android:layout_weight="0.1"
+        android:text="TextView"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/textViewDescription"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:text="TextView"
+        android:fontFamily="@font/bangers"
+        android:textSize="10sp"
+        android:layout_weight="0.1"
+        android:gravity="center"
+        android:padding="10dp"
+        android:background="@color/yellow"
+        android:layout_gravity="center" />
+    <TextView
+        android:id="@+id/textViewPrice"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:text="TextView"
+        android:fontFamily="@font/bangers"
+        android:textSize="16sp"
+        android:gravity="center"
+
+        android:layout_gravity="center" />
 </LinearLayout>
