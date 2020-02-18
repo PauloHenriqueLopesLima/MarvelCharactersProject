@@ -33,6 +33,8 @@ public class ComicsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_comics);
 
+        overridePendingTransition(R.anim.anim_one, R.anim.anim_one);
+
         imageViewCharacterComics = findViewById(R.id.imageViewCharacterComics);
         textViewIdCharacterComics = findViewById(R.id.textViewIdCharacterComics);
         textViewDescription = findViewById(R.id.textViewDescription);

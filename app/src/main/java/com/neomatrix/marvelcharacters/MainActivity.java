@@ -47,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
+        //overridePendingTransition(R.anim.anim_one, R.anim.anim_one);
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
         gridLayout = new GridLayoutManager(this, 2, GridLayoutManager.VERTICAL, false);
