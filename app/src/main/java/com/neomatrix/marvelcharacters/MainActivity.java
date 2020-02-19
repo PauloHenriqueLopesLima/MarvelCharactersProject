@@ -54,8 +54,8 @@ public class MainActivity extends AppCompatActivity {
 
                 .orientation(GridLayout.VERTICAL)
                 .layoutManagerType(AnimatedRecyclerView.LayoutManagerType.GRID)
-                .animation(R.anim.layout_animation_from_bottom_random)
-                .animationDuration(600)
+                .animation(R.anim.layout_animation_from_scale)
+                .animationDuration(10000)
                 .reverse(false)
                 .build();
 
