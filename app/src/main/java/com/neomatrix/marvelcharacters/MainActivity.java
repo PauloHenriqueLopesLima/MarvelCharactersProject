@@ -1,11 +1,16 @@
 package com.neomatrix.marvelcharacters;
 
+import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.widget.GridLayout;
-import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -31,9 +36,13 @@ public class MainActivity extends AppCompatActivity {
     private String TAG;
     private CharactersAdapter adapter;
     private GridLayoutManager gridLayout;
-    private ProgressBar progressBar;
+    private ProgressDialog progressDialog;
     private List<Result> personagens;
     private CharactersApi retornoApi;
+    private int progressStatus = 0;
+    private TextView textView;
+    private Handler handler = new Handler();
+
 
 
 
@@ -49,19 +58,10 @@ public class MainActivity extends AppCompatActivity {
         //overridePendingTransition(R.anim.anim_one, R.anim.anim_one);
 
 
+        textView = findViewById(R.id.textViewProgressBar);
 
-        recyclerView = new AnimatedRecyclerView.Builder(this)
 
-                .orientation(GridLayout.VERTICAL)
-                .layoutManagerType(AnimatedRecyclerView.LayoutManagerType.GRID)
-                .animation(R.anim.layout_animation_from_scale)
-                .animationDuration(10000)
-                .reverse(false)
-                .build();
-
-        recyclerView = findViewById(R.id.recyclerView);
-        //recyclerView.setHasFixedSize(true);
-        //gridLayout = new GridLayoutManager(this, 2, GridLayoutManager.VERTICAL, false);
+        setupRecyclerView();
 
         personagens = new ArrayList<>();
 
@@ -89,7 +89,23 @@ public class MainActivity extends AppCompatActivity {
 
 
                 } else {
+                    new AlertDialog.Builder(MainActivity.this)
+                            .setTitle("Atenção")
+                            .setMessage("Não foi possivel carregar os personagens, tentar novamente?")
+                            .setCancelable(false)
 
+
+                            .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+
+
+                                }
+                            })
+
+
+                            .setNegativeButton(android.R.string.no, null)
+                            .setIcon(android.R.drawable.ic_dialog_alert)
+                            .show();
                 }
             }
 
@@ -106,8 +122,37 @@ public class MainActivity extends AppCompatActivity {
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
 
-                if (! recyclerView.canScrollVertically(1)){ //1 for down
-                    Toast.makeText(MainActivity.this, "Carregando novos personagens", Toast.LENGTH_LONG).show();
+                if (! recyclerView.canScrollVertically(1)){
+
+                    progressDialog = new ProgressDialog(MainActivity.this);
+                    progressDialog.setMax(100);
+                    progressDialog.setMessage("Carregando personagens....");
+                    progressDialog.setTitle("Recebendo dados da API");
+                    progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+                    progressDialog.show();
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+
+                            try {
+                                while (progressDialog.getProgress() <= progressDialog
+                                        .getMax()) {
+                                    Thread.sleep(200);
+                                    handler.sendMessage(handler.obtainMessage());
+                                    if (progressDialog.getProgress() == progressDialog
+                                            .getMax()) {
+                                        progressDialog.dismiss();
+                                    }
+                                }
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }).start();
+
+
+
+                    //Toast.makeText(MainActivity.this, "Carregando novos personagens", Toast.LENGTH_LONG).show();
 
                     offset = offset+20;
 
@@ -126,7 +171,7 @@ public class MainActivity extends AppCompatActivity {
 
                                 personagens.addAll(response.body().getData().getResults()) ;
                                 adapter.notifyDataSetChanged();
-                                recyclerView.scheduleLayoutAnimation();
+
 
                             } else {
 
@@ -148,11 +193,34 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+        handler = new Handler() {
+            @Override
+            public void handleMessage(Message msg) {
+                super.handleMessage(msg);
+                progressDialog.incrementProgressBy(10);
+            }
+        };
     }
 
 
 
 
+
+
+    private void setupRecyclerView() {
+        recyclerView = new AnimatedRecyclerView.Builder(this)
+
+                .orientation(GridLayout.VERTICAL)
+                .layoutManagerType(AnimatedRecyclerView.LayoutManagerType.GRID)
+                .animation(R.anim.layout_animation_from_scale)
+                .animationDuration(10000)
+                .reverse(false)
+                .build();
+
+        recyclerView = findViewById(R.id.recyclerView);
+        //recyclerView.setHasFixedSize(true);
+        //gridLayout = new GridLayoutManager(this, 2, GridLayoutManager.VERTICAL, false);
+    }
 
 
 }
