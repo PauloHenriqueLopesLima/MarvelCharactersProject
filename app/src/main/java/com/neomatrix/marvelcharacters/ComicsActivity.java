@@ -3,6 +3,7 @@ package com.neomatrix.marvelcharacters;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -63,6 +64,10 @@ public class ComicsActivity extends AppCompatActivity {
         requestApi.enqueue(new Callback<ComicsApi>() {
             @Override
             public void onResponse(Call<ComicsApi> call, Response<ComicsApi> response) {
+                
+                try {
+                    
+                
                 if (response.isSuccessful()) {
 
                     List<Result> comics = response.body().getData().getResults();
@@ -92,6 +97,10 @@ public class ComicsActivity extends AppCompatActivity {
 
                 } else {
 
+                }
+
+                }catch (Exception e){
+                    Toast.makeText(ComicsActivity.this, "Aconteceu algo não esperado :(", Toast.LENGTH_LONG).show();
                 }
             }
 
