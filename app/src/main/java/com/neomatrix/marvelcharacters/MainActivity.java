@@ -1,6 +1,7 @@
 package com.neomatrix.marvelcharacters;
 
 import android.os.Bundle;
+import android.widget.GridLayout;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -9,12 +10,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.mlsdev.animatedrv.AnimatedRecyclerView;
 import com.neomatrix.marvelcharacters.adapter.CharactersAdapter;
 import com.neomatrix.marvelcharacters.interfaces.MarvelApi;
-import com.neomatrix.marvelcharacters.models.Characters;
 import com.neomatrix.marvelcharacters.models.CharactersApi;
-import com.neomatrix.marvelcharacters.models.Data;
-import com.neomatrix.marvelcharacters.models.RespostaApi;
 import com.neomatrix.marvelcharacters.models.Result;
 
 import java.util.ArrayList;
@@ -28,7 +27,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
 
-    private RecyclerView recyclerView;
+    private AnimatedRecyclerView recyclerView;
     private String TAG;
     private CharactersAdapter adapter;
     private GridLayoutManager gridLayout;
@@ -48,9 +47,21 @@ public class MainActivity extends AppCompatActivity {
 
 
         //overridePendingTransition(R.anim.anim_one, R.anim.anim_one);
+
+
+
+        recyclerView = new AnimatedRecyclerView.Builder(this)
+
+                .orientation(GridLayout.VERTICAL)
+                .layoutManagerType(AnimatedRecyclerView.LayoutManagerType.GRID)
+                .animation(R.anim.layout_animation_from_bottom_random)
+                .animationDuration(600)
+                .reverse(false)
+                .build();
+
         recyclerView = findViewById(R.id.recyclerView);
-        recyclerView.setHasFixedSize(true);
-        gridLayout = new GridLayoutManager(this, 2, GridLayoutManager.VERTICAL, false);
+        //recyclerView.setHasFixedSize(true);
+        //gridLayout = new GridLayoutManager(this, 2, GridLayoutManager.VERTICAL, false);
 
         personagens = new ArrayList<>();
 
@@ -71,9 +82,10 @@ public class MainActivity extends AppCompatActivity {
                     personagens = response.body().getData().getResults();
                     offset= response.body().getData().getOffset();
                     adapter = new CharactersAdapter(personagens, getApplicationContext());
-                    recyclerView.setLayoutManager(gridLayout);
+                    //recyclerView.setLayoutManager(gridLayout);
                     recyclerView.setAdapter(adapter);
                     adapter.notifyDataSetChanged();
+                    recyclerView.scheduleLayoutAnimation();
 
 
                 } else {
@@ -86,6 +98,8 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+
 
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
@@ -112,6 +126,7 @@ public class MainActivity extends AppCompatActivity {
 
                                 personagens.addAll(response.body().getData().getResults()) ;
                                 adapter.notifyDataSetChanged();
+                                recyclerView.scheduleLayoutAnimation();
 
                             } else {
 
